@@ -1,0 +1,159 @@
+:root {
+  --border-color: #ccc;
+  --bg-color-main: #ffffff;
+  --bg-color-panel: #f9f9f9;
+  --text-color: #213547;
+  --shape-size: 70px;
+  --icon-size: 25px;
+  --shape-border-thickness: 2px;
+  --icon-border-thickness: 1px;
+  --shape-border-color: black;
+  --svg-triangle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,2 98,98 2,98' fill='white' stroke='black' stroke-width='4'/%3E%3C/svg%3E");
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color-main);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-areas:
+    'header sidebar'
+    'canvas sidebar'
+    'counter sidebar';
+  gap: 1rem;
+}
+
+.header, .sidebar, .canvas, .counter {
+  border: 1px solid var(--border-color);
+}
+
+.header, .sidebar, .counter {
+  background-color: var(--bg-color-panel);
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.painting-title-input {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: inherit;
+  outline: none;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tools-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.canvas {
+  grid-area: canvas;
+  background-color: var(--bg-color-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.counter {
+  grid-area: counter;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.counter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shape-tool, .canvas-shape {
+  width: var(--shape-size);
+  height: var(--shape-size);
+  cursor: grab;
+  box-sizing: border-box;
+}
+
+.canvas-shape {
+  position: absolute;
+}
+
+.circle, .square {
+  background-color: var(--bg-color-main);
+  border: var(--shape-border-thickness) solid var(--shape-border-color);
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.triangle {
+  background: var(--svg-triangle) center/contain no-repeat;
+}
+
+.shape-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  box-sizing: border-box;
+}
+
+.shape-icon.circle, .shape-icon.square {
+  background-color: var(--bg-color-main);
+  border: var(--icon-border-thickness) solid var(--shape-border-color);
+}
+
+.shape-icon.circle {
+  border-radius: 50%;
+}
+
+.shape-icon.triangle {
+  background: var(--svg-triangle) center/contain no-repeat;
+}
+
+button {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  background-color: #f0f0f0;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #333;
+}
